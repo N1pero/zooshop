@@ -1,0 +1,35 @@
+[2026-05-07 04:17:43] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:17:56] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:18:00] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:18:04] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:39] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:40] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:41] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:41] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:41] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:42] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:42] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:42] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 04:27:43] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:27:44] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:27:44] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:27:44] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:27:44] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:27:45] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:27:45] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 04:27:46] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:49] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:50] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:50] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:50] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:50] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:50] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:50] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:51] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:51] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:51] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:51] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 04:27:51] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39
+[2026-05-07 05:12:29] Пользовательское предупреждение: Тестовая нефатальная ошибка для ЛР5 in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 13
+[2026-05-07 05:12:38] Демонстрационная ошибка БД: Table 'zooshop_lr4_db.not_existing_table' doesn't exist in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 33
+[2026-05-07 05:12:44] Исключение: Call to undefined function undefined_lab5_function() in F:\OSPanel\domains\zooshop\pages\error_demo.php on line 39

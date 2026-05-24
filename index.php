@@ -1,93 +1,64 @@
 <?php
-require_once __DIR__ . '/includes/config.php';
-$pageTitle = 'ZOOSHOP — зоомагазин';
-$activePage = 'home';
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/functions.php';
 
-$productsCount = $conn->query("SELECT COUNT(*) AS total FROM products")->fetch_assoc();
-$usersCount = $conn->query("SELECT COUNT(*) AS total FROM users")->fetch_assoc();
-$ordersCount = $conn->query("SELECT COUNT(*) AS total FROM orders")->fetch_assoc();
+if (!empty($_SESSION['admin_panel_id'])) {
+    header('Location: panel.php');
+    exit;
+}
 
-$popular = $conn->query("
-    SELECT p.id, p.name, p.price, p.photo, c.name AS category_name
-    FROM products p
-    INNER JOIN categories c ON c.id = p.category_id
-    ORDER BY p.price ASC, p.name ASC
-    LIMIT 4
-");
+$error = '';
 
-require_once __DIR__ . '/includes/header.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $login = trim($_POST['login'] ?? '');
+    $password = (string)($_POST['password'] ?? '');
+
+    $stmt = $conn->prepare("SELECT id, login, password_hash, is_admin FROM users WHERE login = ? AND is_admin = 1");
+    $stmt->bind_param('s', $login);
+    $stmt->execute();
+    $admin = $stmt->get_result()->fetch_assoc();
+
+    if ($admin && password_verify($password, $admin['password_hash'])) {
+        session_regenerate_id(true);
+        $_SESSION['admin_panel_id'] = (int)$admin['id'];
+        $_SESSION['admin_panel_login'] = $admin['login'];
+        header('Location: panel.php');
+        exit;
+    }
+
+    $error = 'Неверный логин или пароль администратора.';
+}
 ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в админ-панель — ZOOSHOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-login-page">
+    <section class="admin-login-card">
+        <h1>Административная панель</h1>
+        <p class="muted">Вход выполняется отдельно от пользовательской части сайта.</p>
+        <p class="muted">Демо: <strong>admin</strong> / <strong>admin123</strong></p>
 
-<section class="hero">
-    <span class="eyebrow">Зоомагазин для кошек и собак</span>
-    <h1>Все для питомца в одном удобном каталоге</h1>
-    <p>
-        ZOOSHOP помогает быстро подобрать корм, лакомства, игрушки, переноски и средства ухода.
-        Зарегистрируйтесь, добавляйте товары в корзину, оформляйте заказы и смотрите историю покупок
-        в личном кабинете.
-    </p>
-    <div class="hero-actions">
-        <a class="btn btn-success" href="pages/catalog.php">Перейти в каталог</a>
-        <?php if (!$currentUser): ?>
-            <a class="btn" href="auth/register.php">Создать аккаунт</a>
-        <?php else: ?>
-            <a class="btn" href="pages/profile.php">Личный кабинет</a>
+        <?php if ($error): ?>
+            <div class="flash error"><?php echo e($error); ?></div>
         <?php endif; ?>
-    </div>
-</section>
 
-<section class="stats-grid">
-    <div class="card stat-card">
-        <div class="stat-value"><?php echo (int)$productsCount['total']; ?></div>
-        <p>товаров в каталоге</p>
-    </div>
-    <div class="card stat-card">
-        <div class="stat-value"><?php echo (int)$usersCount['total']; ?></div>
-        <p>зарегистрированных пользователей</p>
-    </div>
-    <div class="card stat-card">
-        <div class="stat-value"><?php echo (int)$ordersCount['total']; ?></div>
-        <p>оформленных заказов</p>
-    </div>
-</section>
-
-<section class="grid-3">
-    <article class="card">
-        <h3>Подбор товаров</h3>
-        <p>Используйте поиск, категории, бренды, тип питомца и диапазон цены.</p>
-    </article>
-    <article class="card">
-        <h3>Корзина и заказ</h3>
-        <p>Добавляйте товары в корзину и оформляйте заказ после авторизации.</p>
-    </article>
-    <article class="card">
-        <h3>Личный кабинет</h3>
-        <p>После входа доступны личные данные пользователя и история заказов.</p>
-    </article>
-</section>
-
-<?php if ($popular && $popular->num_rows > 0): ?>
-<section class="card">
-    <div class="card-header">
-        <div>
-            <h2>Популярные товары</h2>
-            <p>Позиции, с которых удобно начать выбор.</p>
-        </div>
-        <a class="btn btn-small" href="pages/catalog.php">Смотреть все</a>
-    </div>
-
-    <div class="product-grid">
-        <?php while ($item = $popular->fetch_assoc()): ?>
-            <article class="product-card">
-                <?php echo product_img($item['photo'], $item['name']); ?>
-                <span class="badge"><?php echo e($item['category_name']); ?></span>
-                <h3><?php echo e($item['name']); ?></h3>
-                <div class="price"><?php echo money($item['price']); ?></div>
-                <a class="btn btn-small" href="pages/catalog.php?search=<?php echo urlencode($item['name']); ?>">Подробнее</a>
-            </article>
-        <?php endwhile; ?>
-    </div>
-</section>
-<?php endif; ?>
-
-<?php require_once __DIR__ . '/includes/footer.php'; ?>
+        <form method="POST" class="form-grid">
+            <div class="form-group">
+                <label>Логин администратора</label>
+                <input type="text" name="login" required>
+            </div>
+            <div class="form-group">
+                <label>Пароль администратора</label>
+                <input type="password" name="password" required>
+            </div>
+            <button class="btn btn-success" type="submit">Войти в админ-панель</button>
+            <a class="btn btn-secondary" href="../index.php">Вернуться на сайт</a>
+        </form>
+    </section>
+</body>
+</html>
