@@ -1,0 +1,66 @@
+Что изменено для отчета
+
+1. Главное изменение
+   Ошибки БД больше не отправляются в пользовательский обработчик ошибок.
+   Для MySQLi отключены исключения:
+   mysqli_report(MYSQLI_REPORT_OFF);
+   Поэтому ошибки БД проверяются вручную через mysqli_connect_error() и mysqli_error().
+
+2. includes/config.php
+   Подключение к БД теперь выглядит так:
+
+   $conn = mysqli_connect($host, $user, $password);
+   if (!$conn) {
+       echo 'Ошибка подключения к базе данных: ' . mysqli_connect_error();
+       exit();
+   }
+
+   if (!mysqli_query($conn, $sql)) {
+       echo 'Ошибка создания базы данных: ' . mysqli_error($conn);
+       exit();
+   }
+
+3. auth/register.php
+   Вставка пользователя сделана по методичке:
+
+   $sql = "INSERT INTO users (login, password_hash, email, photo, registration_date) VALUES (?, ?, ?, ?, ?)";
+   $stmt = mysqli_prepare($conn, $sql);
+   if (!$stmt) {
+       echo 'Ошибка подготовки запроса: ' . mysqli_error($conn);
+       exit();
+   }
+
+   if (!mysqli_stmt_bind_param($stmt, 'sssss', $login, $hash, $email, $photoPath, $registrationDate)) {
+       echo 'Ошибка связывания параметров: ' . mysqli_error($conn);
+       exit();
+   }
+
+   if (!mysqli_stmt_execute($stmt)) {
+       echo 'Ошибка выполнения запроса: ' . mysqli_error($conn);
+       exit();
+   }
+
+   mysqli_stmt_close($stmt);
+
+4. pages/error_demo.php?demo=db_error
+   Это готовый скриншот для отчета по ошибке БД.
+   Открыть:
+   /pages/error_demo.php?demo=db_error
+
+   Там специально выполняется INSERT с логином demo, который уже есть в БД.
+   Поэтому будет ошибка вида:
+   Ошибка выполнения запроса: Duplicate entry 'demo' for key ...
+
+5. includes/error_handler.php
+   Пользовательский обработчик оставлен для других типов ошибок, чтобы в отчете были разные варианты:
+   - /pages/error_demo.php?demo=warning — E_USER_WARNING;
+   - /pages/error_demo.php?demo=notice — E_USER_NOTICE;
+   - /pages/error_demo.php?demo=user_fatal — E_USER_ERROR;
+   - /pages/error_demo.php?demo=fatal — фатальная ошибка.
+
+6. Админ-панель
+   Исправлены кнопки в товарах и пользователях:
+   - кнопки в таблице товаров больше не обрезаются;
+   - "Изменить" и "Удалить" стоят нормально;
+   - кнопки не конфликтуют с массовым удалением;
+   - у пользователей подписи кнопок сделаны понятнее.
